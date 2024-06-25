@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenida</title>
+</head>
+<body>
+    <form id="datosUsuario">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre"><br><br>
+        <label for="apellido">Apellido:</label>
+        <input type="text" id="apellido" name="apellido"><br><br>
+        <label for="fechaNacimiento">Fecha de Nacimiento (YYYY-MM-DD):</label>
+        <input type="date" id="fechaNacimiento" name="fechaNacimiento"><br><br>
+        <input type="button" value="Enviar" onclick="mostrarMensaje()">
+    </form>
+    <div id="mensaje"></div>
+    
+    <script>
+        //var name1 = "Juan Perez"
+        //var name2 = "Ramon Diaz"
+        //var name3 = "Carolina Gonzalez" 
+        function calcularDiasVividos(fechaNacimiento) {
+            var hoy = new Date();
+            var nacimiento = new Date(fechaNacimiento);
+            var diferencia = hoy - nacimiento;
+            var diasVividos = Math.floor(diferencia / (1000 * 60 * 60 * 24)); //esto pasa de ms a días
+            return diasVividos;
+        }
+
+        function mostrarMensaje() {
+            var nombre = document.getElementById("nombre").value;
+            var apellido = document.getElementById("apellido").value;
+            var fechaNacimiento = document.getElementById("fechaNacimiento").value;
+
+            var diasVividos = calcularDiasVividos(fechaNacimiento);
+
+            var mensaje = `<h1>Bienvenido, ${nombre} ${apellido}!</h1>`;
+            mensaje += `<p>Has vivido ${diasVividos} días.</p>`;
+
+            document.getElementById("mensaje").innerHTML = mensaje;
+        }
+    </script>
+</body>
+</html>
